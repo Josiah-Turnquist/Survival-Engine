@@ -1,2 +1,3 @@
-# 2D Engine
-This is a group final project by Eric Weng, Josiah Turnquist, and Jason Wong. We are making a game using SDL and C++.
+# Survival Engine
+
+Made by Josiah Turnquist (with lots of help from LetsMakeGames' Youtube Channel and Jason Wong)
