@@ -3,13 +3,19 @@ Fonts:
 - "Arial"
 - "Times New Roman"
 
-Textures:
-- "terrain"
-- "endgame"
-
 Groups:
 - groupMap
 - groupPlayers
 - groupColliders
 - groupProjectiles
 - groupEnemies
+
+Maps:
+- "map.txt"
+- "end.txt"
+- ""
+
+Textures:
+- "terrain"
+- "endgame"
+

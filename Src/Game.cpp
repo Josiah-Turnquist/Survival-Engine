@@ -94,7 +94,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen) //
 
 	//create the map and open it
 	map = new Map("terrain", 2, 32);
-	map->LoadMap("assets/maps/map.map", 25, 20);
+	map->LoadMap("assets/maps/map.txt", 25, 20);
     delete map;
 
 	//make player and give it all the functions
