@@ -1,0 +1,15 @@
+Fonts:
+- "Arcade"
+- "Arial"
+- "Times New Roman"
+
+Textures:
+- "terrain"
+- "endgame"
+
+Groups:
+- groupMap
+- groupPlayers
+- groupColliders
+- groupProjectiles
+- groupEnemies

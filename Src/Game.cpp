@@ -77,22 +77,24 @@ void Game::init(const char* title, int width, int height, bool fullscreen) //
 		isRunning = true;
 	}
 
-	if (TTF_Init() == -1) {
-		std::cout << "Error : SDL_TTF" << std::endl;
-	}
-
 	//add all the textures in
-	assets->AddTexture("terrain", "assets/terrain_ss.png");
-	assets->AddTexture("player", "assets/player_anims.png");
-	assets->AddTexture("enemy", "assets/enemy.png");
-	assets->AddTexture("end", "assets/end.png");
-
-	//get a font
-	assets->AddFont("arcade", "assets/ARCADECLASSIC.ttf", 30);
+	assets->AddTexture("terrain", "assets/textures/terrain_ss.png");
+    assets->AddTexture("endgame", "assets/textures/end.png");
+	assets->AddTexture("player", "assets/animations/player_anims.png");
+	assets->AddTexture("enemy", "assets/animations/enemy.png");
+    
+    //get some fonts
+    if (TTF_Init() == -1) {
+        std::cout << "Error : SDL_TTF" << std::endl;
+    }
+    
+    assets->AddFont("Arcade", "assets/fonts/ARCADECLASSIC.ttf", 30);
+    assets->AddFont("Arial", "assets/fonts/Arial.ttf", 30);
+    assets->AddFont("Times New Roman", "assets/fonts/Times.ttf", 30);
 
 	//create the map and open it
 	map = new Map("terrain", 2, 32);
-	map->LoadMap("assets/map.map", 25, 20);
+	map->LoadMap("assets/maps/map.map", 25, 20);
     delete map;
 
 	//make player and give it all the functions
@@ -192,10 +194,10 @@ void Game::init(const char* title, int width, int height, bool fullscreen) //
 	enemy15.addGroup(groupEnemies);
 
 	//set up where the score and health text will be
-	pScore.addComponent<UILabel>(10, 10, "Score", "arcade", white);
-	pHealth.addComponent<UILabel>(10, 50, "Health", "arcade", red);
-	eScore.addComponent<UILabel>(275, 250, "End Score", "arcade", white);
-	escGame.addComponent<UILabel>(150, 350, "Esc Game", "arcade", white);
+	pScore.addComponent<UILabel>(10, 10, "Score", "Arcade", white);
+	pHealth.addComponent<UILabel>(10, 50, "Health", "Arcade", red);
+	eScore.addComponent<UILabel>(275, 250, "End Score", "Arcade", white);
+	escGame.addComponent<UILabel>(150, 350, "Esc Game", "Arcade", white);
 }
 
 // Returns the refrences to the vector pointer to each group. i.e. 'tiles' references to the manager's vector of every tile in the map.
@@ -234,27 +236,27 @@ void Game::update() {// Updates all entities and interaction among them.
 			c->destroy();
         }
 		
-        map = new Map("end", 3, 32); // Goes to new map
-		map->LoadMap("assets/end.txt", 25, 20);
+        map = new Map("endgame", 3, 32); // Goes to new map
+		map->LoadMap("assets/maps/end.txt", 25, 20);
         delete map;
         
 		std::stringstream end;
 		end << "Ending  Score :    " << tempScore;
-		eScore.getComponent<UILabel>().SetLabelText(end.str(), "arcade");
+		eScore.getComponent<UILabel>().SetLabelText(end.str(), "Arcade");
 
 		std::string esc;
 		esc = "Please  press  'esc'  to  leave  the  game";
-		escGame.getComponent<UILabel>().SetLabelText(esc, "arcade");
+		escGame.getComponent<UILabel>().SetLabelText(esc, "Arcade");
 	}
 	else {
 		std::stringstream sc;
 		sc << "Score : " << tempScore;
-		pScore.getComponent<UILabel>().SetLabelText(sc.str(), "arcade");
+		pScore.getComponent<UILabel>().SetLabelText(sc.str(), "Arcade");
 		player.getComponent<CharacteristicComponent>().addScore(.06);
 
 		std::stringstream hp;
 		hp << "Health : " << player.getComponent<CharacteristicComponent>().getHealth();
-		pHealth.getComponent<UILabel>().SetLabelText(hp.str(), "arcade");
+		pHealth.getComponent<UILabel>().SetLabelText(hp.str(), "Arcade");
 	}
     
     SDL_Rect playerOldCol = player.getComponent <ColliderComponent>().collider;
